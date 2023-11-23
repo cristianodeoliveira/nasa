@@ -17,16 +17,20 @@ app = Flask(__name__)
 def home_page():
 
     webimage = getUrl()
-    #print(json.dumps(webimage,indent=4))
-    #myurl = "https://apod.nasa.gov/apod/image/2311/ngc1555wide1024.jpg"
-    imgtag = "<IMG src='" + webimage.get('url','') + "' style='width:200px;'></IMG>" 
+    return render_template('home.html'
+                        ,imgurl=webimage.get('url')
+                        ,pageHeader=webimage.get('title')
+                        ,desc=webimage.get('explanation')
+                        )
     
-    myresponse = '<h1>Our Awesome Nasa Website:)!!!!!!</h1><br/>' 
-    myresponse += '<h2>'+webimage.get('title','')+'</h2>'
-    myresponse += imgtag
-    myresponse += '<p>'+webimage.get('explanation','')+'</p>'
+    # imgtag = "<IMG src='" + webimage.get('url','') + "' style='width:200px;'></IMG>" 
     
-    return myresponse
+    # myresponse = '<h1>Our Awesome Nasa Website:)!!!!!!</h1><br/>' 
+    # myresponse += '<h2>'+webimage.get('title','')+'</h2>'
+    # myresponse += imgtag
+    # myresponse += '<p>'+webimage.get('explanation','')+'</p>'
+    
+    # return myresponse
 
 # if __name__ == "__main__":
 #     app.run()
